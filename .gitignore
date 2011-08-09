@@ -1,0 +1,13 @@
+.svn
+.idea/
+*.iml
+plugin.xml
+target/
+*.zip
+*.tld
+.classpath
+.project
+.settings/
+devDB.log
+devDB.properties
+devDB.script
