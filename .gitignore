@@ -10,6 +10,7 @@ target/
 .settings/
 devDB.log
 devDB.properties
-devDB.scriptweb-app/WEB-INF/applicationContext.xml
+devDB.script
+web-app/WEB-INF/applicationContext.xml
 web-app/WEB-INF/sitemesh.xml
 web-app/WEB-INF/tld/
