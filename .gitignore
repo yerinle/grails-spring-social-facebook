@@ -11,6 +11,9 @@ target/
 devDB.log
 devDB.properties
 devDB.script
-web-app/WEB-INF/applicationContext.xml
-web-app/WEB-INF/sitemesh.xml
-web-app/WEB-INF/tld/
+web-app/META-INF/
+web-app/WEB-INF/
+web-app/css/main.css
+web-app/images/
+web-app/js/prototype/
+web-app/js/application.js
