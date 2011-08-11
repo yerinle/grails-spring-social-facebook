@@ -29,6 +29,6 @@ grails.project.dependency.resolution = {
 		 compile("org.springframework.social:spring-social-facebook:${springSocialVersion}") { transitive = false }
     }
 	plugins {
-        //runtime (":spring-social-core:0.1.2")
+        runtime (":spring-social-core:0.1.2")
     }
 }
