@@ -16,12 +16,6 @@
 		<dt>Email:</dt>
 		<dd>${profile.email}</dd>
 	</dl>
-
-	<c:url value="/connect/facebook" var="disconnectUrl"/>
-	<form id="disconnect" action="${disconnectUrl}" method="post">
-		<button type="submit">Disconnect from Facebook</button>	
-		<input type="hidden" name="_method" value="delete" />
-	</form>
 	
 	<g:form method="DELETE" mapping="springSocialConnect" params="[providerId:'facebook']">
 	    <button type="submit">Disconnect from Facebook</button>
