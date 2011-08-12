@@ -1,9 +1,9 @@
 springsocial {
     facebook.page.connect = "/springsocial/facebook/connect"
-    facebook.page.connectedHome = "/springSocialfacebook/index"
-    facebook.page.profile = "/springSocialfacebook/index"
-    facebook.page.timeLine = "/springsocial/facebook/timeline"
-    facebook.page.profiles = "/springsocial/facebook/profiles"
-    facebook.page.directMessages = "/springsocial/facebook/messages"
-    facebook.page.trends = "/springsocial/facebook/trends"
+    facebook.page.connectedHome = "/springsocial/facebook/index"
+    facebook.page.profile = "/springsocial/facebook/index"
+    facebook.page.feed = "/springsocial/facebook/feed"
+    facebook.page.friends = "/springsocial/facebook/friends"
+    facebook.page.albums = "/springsocial/facebook/albums"
+    facebook.page.album = "/springsocial/facebook/album"
 }
