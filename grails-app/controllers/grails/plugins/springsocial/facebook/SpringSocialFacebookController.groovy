@@ -25,7 +25,7 @@ class SpringSocialFacebookController {
     def index = {
         if (isConnected()) {
             def model = ["profile": facebook.userOperations().getUserProfile()]
-            render(view: SpringSocialFacebookUtils.config.facebook.page.connectedHome, model: model)
+            render(view: SpringSocialFacebookUtils.config.facebook.page.profile, model: model)
         } else {
             render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
         }
