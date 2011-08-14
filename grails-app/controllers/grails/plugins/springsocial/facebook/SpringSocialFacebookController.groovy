@@ -14,7 +14,6 @@
  */
 package grails.plugins.springsocial.facebook
 
-import org.springframework.social.connect.Connection
 import org.springframework.social.facebook.api.Facebook
 
 class SpringSocialFacebookController {
