@@ -10,7 +10,7 @@
 
 	<ul class="friends">
 		<g:each in="${friends}" var="friend">
-			<li><img src="http://graph.facebook.com/${friend.id}/picture" align="middle"/>${friend.name}"</li>
+			<li><img src="http://graph.facebook.com/${friend.id}/picture" align="middle"/>${friend.name}</li>
 		</g:each>
 	</ul>
 

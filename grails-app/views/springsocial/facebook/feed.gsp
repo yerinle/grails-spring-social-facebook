@@ -21,9 +21,10 @@
 					<g:if test="${post.picture}">
 						<img src="${post.picture}" align="top"/>
 					</g:if>
+
 					
-					<c:if test="${not empty post.picture}"></c:if>
 					${post.message} - ${post.name}
+                </p>
 			</li>
 		</g:each>
 	</ul>
