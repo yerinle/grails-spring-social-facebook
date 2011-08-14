@@ -14,12 +14,11 @@
  */
 package grails.plugins.springsocial.facebook
 
-import grails.plugins.springsocial.facebook.SpringSocialFacebookUtils
-import org.springframework.social.facebook.api.Facebook
 import org.springframework.social.connect.Connection
+import org.springframework.social.facebook.api.Facebook
 
 class SpringSocialFacebookController {
-	def facebook
+    def facebook
     def connectionRepository
 
     def index = {
@@ -31,58 +30,58 @@ class SpringSocialFacebookController {
         }
     }
 
-	def feed = {
-		if (isConnected()) {
-			def model = ['feed': facebook.feedOperations().getFeed()]
-			render(view: SpringSocialFacebookUtils.config.facebook.page.feed, model: model)
+    def feed = {
+        if (isConnected()) {
+            def model = ['feed': facebook.feedOperations().getFeed()]
+            render(view: SpringSocialFacebookUtils.config.facebook.page.feed, model: model)
         } else {
             render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
         }
-	}
-	
-	def update = {
-		if (isConnected()) {
-			def message = params.id ?: params.message
-			facebook.feedOperations().updateStatus(message);
-			redirect(action:feed)
+    }
+
+    def update = {
+        if (isConnected()) {
+            def message = params.id ?: params.message
+            facebook.feedOperations().updateStatus(message);
+            redirect(action: feed)
         } else {
             render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
         }
-	}
-	
-	def friends = {
-		if (isConnected()) {
-			def model = ["friends": facebook.friendOperations().getFriendProfiles()]
-			render(view: SpringSocialFacebookUtils.config.facebook.page.friends, model: model)
+    }
+
+    def friends = {
+        if (isConnected()) {
+            def model = ["friends": facebook.friendOperations().getFriendProfiles()]
+            render(view: SpringSocialFacebookUtils.config.facebook.page.friends, model: model)
         } else {
             render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
         }
-	}
-	
-	def albums = {
-		if (isConnected()) {
-			def model = ["albums": facebook.mediaOperations().getAlbums()]
-			render(view: SpringSocialFacebookUtils.config.facebook.page.albums, model: model)
+    }
+
+    def albums = {
+        if (isConnected()) {
+            def model = ["albums": facebook.mediaOperations().getAlbums()]
+            render(view: SpringSocialFacebookUtils.config.facebook.page.albums, model: model)
         } else {
             render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
         }
-	}
-	
-	def album = {
-		if (isConnected()) {
-			def albumId = params.id ?: params.albumId
-			
-			def model = [:]
-			model.album = facebook.mediaOperations().getAlbum(albumId)
-			model.photos = facebook.mediaOperations().getPhotos(albumId)
-			
-			render(view: SpringSocialFacebookUtils.config.facebook.page.album, model: model)
+    }
+
+    def album = {
+        if (isConnected()) {
+            def albumId = params.id ?: params.albumId
+
+            def model = [:]
+            model.album = facebook.mediaOperations().getAlbum(albumId)
+            model.photos = facebook.mediaOperations().getPhotos(albumId)
+
+            render(view: SpringSocialFacebookUtils.config.facebook.page.album, model: model)
         } else {
             render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
         }
-	}
-	
+    }
+
     Boolean isConnected() {
-		connectionRepository.findPrimaryConnection(Facebook)
+        connectionRepository.findPrimaryConnection(Facebook)
     }
 }
