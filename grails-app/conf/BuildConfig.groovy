@@ -20,6 +20,7 @@ grails.project.dependency.resolution = {
         // from public Maven repositories
         mavenLocal()
         mavenCentral()
+
         mavenRepo "http://maven.springframework.org/release"
         mavenRepo "http://maven.springframework.org/snapshot"
         mavenRepo "http://maven.springframework.org/milestone"
@@ -29,6 +30,6 @@ grails.project.dependency.resolution = {
 		 compile("org.springframework.social:spring-social-facebook:${springSocialVersion}") { transitive = false }
     }
 	plugins {
-        runtime (":spring-social-core:0.1.2")
+        compile (":spring-social-core:0.1.4")
     }
 }
