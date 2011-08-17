@@ -2,10 +2,6 @@
 <html>
 <head>
     <title>Grails Spring Social Facebook Plugin - <g:layoutTitle default="Grails"/></title>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css', plugin: 'spring-social-facebook')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'master.css', plugin: 'spring-social-facebook')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'grid.css', plugin: 'spring-social-facebook')}"/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'gradients.css', plugin: 'spring-social-facebook')}"/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'socialplugins.css', plugin: 'spring-social-facebook')}"/>
     <g:layoutHead/>
 </head>
