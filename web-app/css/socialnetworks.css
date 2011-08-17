@@ -1,0 +1,52 @@
+/* Social Netowrks ✰ Rwasn */
+
+/*-----------------[	SOCIAL NETWORKS CONNECT		]------------------------*/
+.fb-connect,.lk-connect,.go-connect,.tw-connect {
+	text-indent:-99999px;
+	width:150px;
+	height:22px;
+	display:inline-block;
+	cursor:pointer;
+}
+.tw-connect {background:url("../img/socialnetworks/twitter_signin.png") no-repeat;}
+.fb-connect {background:url("../img/socialnetworks/facebook_signin.png") no-repeat;}
+.lk-connect {background:url("../img/socialnetworks/google_signin.png") no-repeat;}
+.go-connect {background:url("../img/socialnetworks/linkedin_signin.png") no-repeat;}
+.fb-connect:hover,.lk-connect:hover,.go-connect:hover,.tw-connect:hover {	background-position:0 -24px}
+.fb-connect:active,.lk-connect:active,.go-connect:active,.tw-connect:active {	background-position:0 -48px}
+
+/*-----------------[	TWITTER		]------------------------*/
+#tweet {
+	padding:15px;
+}
+#tweet h2 {
+	font-weight:normal	
+}
+#tweet ul {
+	list-style-type: none;
+	padding:0px;
+}
+#tweet a:link, a:visited {
+	font-weight:normal
+}
+#tweet p {
+	text-align:center
+}
+.status {
+	color:#333333;
+	font-size:2em;
+	line-height:1.5em;
+}
+.status a {
+	color:#c33d22;
+}
+.time {
+	color:#EEE;
+	font-size:1.4em;
+	line-height:2em;
+	float:right
+}
+.time a {
+	color:#00AEEF;
+	text-decoration:underline;
+}
