@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css/springsocial', file: 'form.css', plugin: 'spring-social-core')}"/>
     <g:layoutHead/>
 </head>
-
+ 
 <body>
 <div id="header">
     <h1>Grails Spring Social Facebook Plugin</h1>
