@@ -1,0 +1,21 @@
+ul.options {
+	padding: 0;
+	margin: 0;
+}
+ul.options li {
+	border-bottom: 1px dotted #506CA2;
+	padding: 6px 8px;
+	position: relative;
+	list-style: none;
+	display: list-item;
+}	
+ul.options li:hover {
+	background-color:#647db5;
+}
+
+
+/* Icons */
+i.facebook, i.twitter { background: url('../img/sprites/sprite_social.png') no-repeat; width:122px; height:30px; display: inline-block; margin: 2px 4px;}
+
+i.facebook { background-position: 0 0;}
+i.twitter { background-position: 0 -60px;}

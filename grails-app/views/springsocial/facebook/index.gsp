@@ -18,7 +18,7 @@
 	</dl>
 	
 	<g:form method="DELETE" mapping="springSocialConnect" params="[providerId:'facebook']">
-	    <button type="submit">Disconnect from Facebook</button>
+	    <button class="FBshare">Disconnect from Facebook</button>
 	</g:form>
 
 
