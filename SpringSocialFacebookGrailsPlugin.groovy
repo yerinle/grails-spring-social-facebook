@@ -8,7 +8,9 @@ class SpringSocialFacebookGrailsPlugin {
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
             "grails-app/views/error.gsp",
-			"web-app/js"
+			"web-app/js",
+			"web-app/images/**",
+			"web-app/images/skin/**"
     ]
 
     // TODO Fill in these fields
