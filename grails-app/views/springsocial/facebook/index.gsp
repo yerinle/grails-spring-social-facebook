@@ -15,7 +15,7 @@
 		<dd>${profile.name}</dd>
 		<dt>Email:</dt>
 		<dd>${profile.email}</dd>
-		<dt>Email:</dt>
+		<dt>Token:</dt>
 		<dd>${token}</dd>
 		
 		<img class="Photo" src="${createLink(controller:'springSocialFacebookController', action:'profilePhoto')}" />
