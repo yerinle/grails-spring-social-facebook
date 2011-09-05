@@ -19,16 +19,21 @@ import org.springframework.social.facebook.api.Facebook
 class SpringSocialFacebookController {
     def facebook
     def connectionRepository
-
     def index = {
         if (isConnected()) {
-            def model = ["profile": facebook.userOperations().getUserProfile()]
+			def fb=facebook.userOperations()
+			
+            def model = ["profile": fb.getUserProfile(),"token":fb.restTemplate.requestFactory.accessToken]
             render(view: SpringSocialFacebookUtils.config.facebook.page.profile, model: model)
         } else {
             render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
         }
     }
-
+    def profilePhoto = {
+      if (isConnected()) {
+      		response.outputStream << facebook.userOperations().getUserProfileImage() 
+      }
+    } 
     def feed = {
         if (isConnected()) {
             def model = ['feed': facebook.feedOperations().getFeed()]
