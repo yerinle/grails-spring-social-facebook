@@ -14,43 +14,40 @@
  */
 package grails.plugins.springsocial.config.facebook
 
-import javax.inject.Inject
-
-import org.springframework.social.connect.Connection
-import org.springframework.social.connect.ConnectionFactoryLocator
-import org.springframework.social.connect.ConnectionRepository
-import org.springframework.social.connect.support.ConnectionFactoryRegistry
-
 import grails.plugins.springsocial.facebook.SpringSocialFacebookUtils
+import javax.inject.Inject
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
+import org.springframework.social.connect.Connection
+import org.springframework.social.connect.ConnectionFactory
+import org.springframework.social.connect.ConnectionRepository
 import org.springframework.social.facebook.api.Facebook
 import org.springframework.social.facebook.api.impl.FacebookTemplate
 import org.springframework.social.facebook.connect.FacebookConnectionFactory
+import org.springframework.util.Assert
 
 @Configuration
 class FacebookConfig {
-    @Inject
-    ConnectionFactoryLocator connectionFactoryLocator
-    @Inject
-    ConnectionRepository connectionRepository
+  @Inject
+  ConnectionRepository connectionRepository
 
-    @Bean
-    String fooFacebook() {
-        println "Configuring SpringSocial Facebook"
-        def facebookConfig = SpringSocialFacebookUtils.config.facebook
-        def clientId = facebookConfig.clientId
-        def clientSecret = facebookConfig.clientSecret
-        ((ConnectionFactoryRegistry) connectionFactoryLocator).addConnectionFactory(new FacebookConnectionFactory(clientId, clientSecret))
-        "fooFacebook"
-    }
+  @Bean
+  ConnectionFactory facebookConnectionFactory() {
+    println "Configuring SpringSocial Facebook"
+    def facebookConfig = SpringSocialFacebookUtils.config.facebook
+    String clientId = facebookConfig.clientId ?: ""
+    String clientSecret = facebookConfig.clientSecret ?: ""
+    Assert.hasText(clientId, "The Facebook clientId is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.facebook.clientId='yourClientId'")
+    Assert.hasText(clientSecret, "The Facebook clientSecret is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.facebook.clientSecret='yourClientSecret'")
+    new FacebookConnectionFactory(clientId, clientSecret)
+  }
 
-    @Bean
-    @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
-    public Facebook facebook() {
-        Connection<Facebook> facebook = connectionRepository.findPrimaryConnection(Facebook)
-        facebook != null ? facebook.getApi() : new FacebookTemplate()
-    }
+  @Bean
+  @Scope(value = "request", proxyMode = ScopedProxyMode.INTERFACES)
+  public Facebook facebook() {
+    Connection<Facebook> facebook = connectionRepository.findPrimaryConnection(Facebook)
+    facebook != null ? facebook.getApi() : new FacebookTemplate()
+  }
 }

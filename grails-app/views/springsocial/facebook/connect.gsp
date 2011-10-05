@@ -9,7 +9,7 @@
 	<h3>Connect to Facebook</h3>
 	
 	<g:form method="POST" mapping="springSocialConnect" params="[providerId:'facebook']">
-	    <input type="hidden" name="scope" value="user_about_me" />
+	    <input type="hidden" name="scope" value="user_hometown,user_interests,user_likes,user_location,email,offline_access,publish_stream,user_birthday" />
 		<div class="formInfo">
 			<h6>You aren't connected to Facebook yet.</h6>
 			<p> Click the button to connect with your Facebook account.</p>
