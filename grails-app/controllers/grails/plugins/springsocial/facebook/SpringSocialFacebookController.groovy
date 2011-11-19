@@ -14,116 +14,66 @@
  */
 package grails.plugins.springsocial.facebook
 
-import grails.plugins.springsocial.UserConnection;
-
+import grails.plugins.springsocial.UserConnection
 import org.springframework.social.connect.ConnectionKey
-import org.springframework.social.facebook.api.impl.FacebookTemplate
+
+import org.springframework.social.facebook.api.Facebook
 
 class SpringSocialFacebookController {
-	def facebook
-	def connectionRepository
-	def index = {
-		if (isConnected()) {
-			def fb=facebook.userOperations()
-			try{
-				def model = ["profile": fb.getUserProfile(session.providerUserId.toString()),"token":fb.restTemplate.requestFactory.accessToken]
-				render(view: SpringSocialFacebookUtils.config.facebook.page.profile, model: model)
-			}catch (Exception e){
-				render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-			}
-		} else {
-			render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-		}
-	}
-	def profilePhoto = {
-		if (isConnected()) {
-			response.outputStream << facebook.userOperations().getUserProfileImage(mediaOperations)
-		}
-	}
-	def feed = {
-		if (isConnected()) {
+  def facebook
+  def connectionRepository
 
-			try{
-				def model = ['feed': facebook.feedOperations().getFeed()]
-				render(view: SpringSocialFacebookUtils.config.facebook.page.feed, model: model)
-			}catch (Exception e){
-				render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-			}
-		} else {
-			render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-		}
-	}
+  def beforeInterceptor = [action: this.&auth, except: 'login']
 
-	def update = {
-		if (isConnected()) {
-			try{
-				def message = params.id ?: params.message
-				facebook.feedOperations().updateStatus(message);
-				redirect(action: feed)
-			}catch (Exception e){
-				render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-			}
-		} else {
-			render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-		}
-	}
+  def index = {
+    def model = ["profile": facebook.userOperations().getUserProfile()]
+    render(view: SpringSocialFacebookUtils.config.facebook.page.profile, model: model)
+  }
+  def profilePhoto = {
+    response.outputStream << facebook.userOperations().getUserProfileImage()
+  }
+  def feed = {
+    def model = ['feed': facebook.feedOperations().getFeed()]
+    render(view: SpringSocialFacebookUtils.config.facebook.page.feed, model: model)
+  }
 
-	def friends = {
-		if (isConnected()) {
+  def update = {
+    def message = params.id ?: params.message
+    facebook.feedOperations().updateStatus(message);
+    redirect(action: feed)
+  }
 
-			try{
-				def model = ["friends": facebook.friendOperations().getFriendProfiles()]
-				render(view: SpringSocialFacebookUtils.config.facebook.page.friends, model: model)
-			}catch (Exception e){
-				render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-			}
-		} else {
-			render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-		}
-	}
+  def friends = {
+    def model = ["friends": facebook.friendOperations().getFriendProfiles()]
+    render(view: SpringSocialFacebookUtils.config.facebook.page.friends, model: model)
+  }
 
-	def albums = {
-		if (isConnected()) {
+  def albums = {
+    def model = ["albums": facebook.mediaOperations().getAlbums()]
+    render(view: SpringSocialFacebookUtils.config.facebook.page.albums, model: model)
+  }
 
-			try{
-				def model = ["albums": facebook.mediaOperations().getAlbums()]
-				render(view: SpringSocialFacebookUtils.config.facebook.page.albums, model: model)
-			}catch (Exception e){
-				render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-			}
-		} else {
-			render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-		}
-	}
+  def album = {
+    def albumId = params.id ?: params.albumId
+    def model = [:]
+    model.album = facebook.mediaOperations().getAlbum(albumId)
+    model.photos = facebook.mediaOperations().getPhotos(albumId)
 
-	def album = {
-		if (isConnected()) {
+    render(view: SpringSocialFacebookUtils.config.facebook.page.album, model: model)
+  }
 
-			try{
-				def albumId = params.id ?: params.albumId
-				def model = [:]
-				model.album = facebook.mediaOperations().getAlbum(albumId)
-				model.photos = facebook.mediaOperations().getPhotos(albumId)
+  def login = {
+    render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
+  }
 
-				render(view: SpringSocialFacebookUtils.config.facebook.page.album, model: model)
-			}catch (Exception e){
-				render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-			}
-		} else {
-			render(view: SpringSocialFacebookUtils.config.facebook.page.connect)
-		}
-	}
+  def auth() {
+    if (!isConnected()) {
+      redirect(action: 'login')
+      return false
+    }
+  }
 
-	Boolean isConnected() {
-		if(session.providerUserId!=null){
-			def providerId = session.providerId
-			def providerUserId = session.providerUserId
-			ConnectionKey ck = new ConnectionKey(providerId,providerUserId);
-			connectionRepository.getConnection(ck)
-			def u = UserConnection.findByProviderUserIdAndProviderId(providerUserId,providerId)
-			facebook= new FacebookTemplate(u.accessToken);
-		}else{
-			return false
-		}
-	}
+  Boolean isConnected() {
+    connectionRepository.findPrimaryConnection(Facebook)
+  }
 }

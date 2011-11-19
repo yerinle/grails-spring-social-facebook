@@ -1,5 +1,5 @@
 class SpringSocialFacebookGrailsPlugin {
-    def version = "0.1.30"
+    def version = "0.1.31"
     def grailsVersion = "1.3 > *"
     def dependsOn = [springSocialCore: '0.1.30 > *']
     // resources that are excluded from plugin packaging
