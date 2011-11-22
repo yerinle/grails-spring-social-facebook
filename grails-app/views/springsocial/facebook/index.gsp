@@ -15,10 +15,8 @@
 		<dd>${profile.name}</dd>
 		<dt>Email:</dt>
 		<dd>${profile.email}</dd>
-		<dt>Token:</dt>
-		<dd>${token}</dd>
 		
-		<img class="Photo" src="${createLink(controller:'springSocialFacebookController', action:'profilePhoto')}" />
+		<img class="Photo" src="${createLink(controller:'springSocialFacebook', action:'profilePhoto')}" />
 	</dl>
 	
 	<g:form method="DELETE" mapping="springSocialConnect" params="[providerId:'facebook']">
