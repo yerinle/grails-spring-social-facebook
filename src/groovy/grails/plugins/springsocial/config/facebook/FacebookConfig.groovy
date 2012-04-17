@@ -1,4 +1,4 @@
-/* Copyright 2011 the original author or authors.
+/* Copyright 2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,17 @@
  */
 package grails.plugins.springsocial.config.facebook
 
-import grails.plugins.springsocial.facebook.SpringSocialFacebookUtils
 import javax.inject.Inject
+
+import org.springframework.social.connect.Connection
+import org.springframework.social.connect.ConnectionFactory
+import org.springframework.social.connect.ConnectionRepository
+
+import grails.plugins.springsocial.facebook.SpringSocialFacebookUtils
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Scope
 import org.springframework.context.annotation.ScopedProxyMode
-import org.springframework.social.connect.Connection
-import org.springframework.social.connect.ConnectionFactory
-import org.springframework.social.connect.ConnectionRepository
 import org.springframework.social.facebook.api.Facebook
 import org.springframework.social.facebook.api.impl.FacebookTemplate
 import org.springframework.social.facebook.connect.FacebookConnectionFactory
