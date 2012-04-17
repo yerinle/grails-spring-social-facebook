@@ -1,4 +1,4 @@
-/* Copyright 2011 the original author or authors.
+/* Copyright 2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,9 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-def springSocialVersion = "1.0.0.RELEASE"
-
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
@@ -39,12 +36,39 @@ grails.project.dependency.resolution = {
     mavenRepo "http://maven.springframework.org/release"
     mavenRepo "http://maven.springframework.org/snapshot"
     mavenRepo "http://maven.springframework.org/milestone"
+
+    mavenRepo "http://repo.clickonero.com/nexus/content/repositories/snapshots/"
+    grailsRepo "http://grails.org/plugins"
+
+    grailsRepo "http://repo.clickonero.com/nexus/content/repositories/snapshots/"
   }
   dependencies {
+    def springSocialVersion = "1.0.1.RELEASE"
     compile("org.springframework.social:spring-social-facebook:${springSocialVersion}") { transitive = false }
+
+    compile("org.codehaus.jackson:jackson-mapper-asl:1.9.2")
   }
   plugins {
-    compile(":spring-security-core:1.2.4")
-    compile(":spring-social-core:0.1.31")
+    compile(":spring-social-core:0.1.33-SNAPSHOT")
+
+    compile(":spring-security-core:1.2.7.3")
+    test(":code-coverage:1.2.5") { export = false }
+    test("org.spockframework:spock:0.6-groovy-1.8-SNAPSHOT") { export = false }
+    build(":release:2.0.0") { export = false }
+    build(":rest-client-builder:1.0.2") { export = false }
   }
+}
+
+grails.project.repos.clickonero.url = "http://repo.clickonero.com/nexus/content/repositories/snapshots/"
+
+grails.release.scm.enabled = false
+//grails.project.repos.default = "grailsCentral"
+grails.project.repos.default = "clickonero"
+
+coverage {
+  exclusions = [
+      "DefaultSpringSocialConfig*",
+      "SpringSocialCoreDefaultConfig*"
+  ]
+  enabledByDefault = true
 }
