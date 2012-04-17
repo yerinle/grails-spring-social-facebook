@@ -17,3 +17,5 @@ web-app/css/main.css
 web-app/images/
 web-app/js/prototype/
 web-app/js/application.js
+web-app/css/errors.css
+web-app/css/mobile.css
