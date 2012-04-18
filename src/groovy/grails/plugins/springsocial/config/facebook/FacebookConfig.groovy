@@ -29,6 +29,7 @@ import org.springframework.social.facebook.api.Facebook
 import org.springframework.social.facebook.api.impl.FacebookTemplate
 import org.springframework.social.facebook.connect.FacebookConnectionFactory
 import org.springframework.util.Assert
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 @Configuration
 class FacebookConfig {
@@ -38,7 +39,9 @@ class FacebookConfig {
   @Bean
   ConnectionFactory facebookConnectionFactory() {
     println "Configuring SpringSocial Facebook"
-    def facebookConfig = SpringSocialFacebookUtils.config.facebook
+    //def facebookConfig = SpringSocialFacebookUtils.config.facebook
+    def facebookConfig = ConfigurationHolder.config.grails.plugins.springsocial.facebook
+
     String clientId = facebookConfig.clientId ?: ""
     String clientSecret = facebookConfig.clientSecret ?: ""
     Assert.hasText(clientId, "The Facebook clientId is necessary, please add to the Config.groovy as follows: grails.plugins.springsocial.facebook.clientId='yourClientId'")
