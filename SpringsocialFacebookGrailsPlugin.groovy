@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class SpringSocialFacebookGrailsPlugin {
+class SpringsocialFacebookGrailsPlugin {
   def version = "0.1.33-SNAPSHOT"
   def grailsVersion = "1.3 > *"
   def dependsOn = [:]
