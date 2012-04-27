@@ -22,3 +22,5 @@ web-app/css/mobile.css
 .gradle
 cobertura.ser
 stacktrace.log
+index.html
+index.rss
